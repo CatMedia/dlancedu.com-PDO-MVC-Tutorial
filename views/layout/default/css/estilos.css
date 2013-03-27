@@ -1,0 +1,222 @@
+﻿/* 
+-----------------------------------
+Documento CSS
+Jaisiel Delance | www.dlancedu.com
+-----------------------------------
+*/
+
+
+body{
+	margin: 0;
+	background: #243D59;
+	font-family: Arial, sans-serif;
+}
+
+h1,h2,h3,h4 {
+	text-shadow: 0 2px 0 #FFFFFF;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px silver solid;
+}
+
+td, th {
+    padding: 3px 6px;
+}
+
+td {
+    text-align: left;
+    vertical-align: top;
+}
+
+ul {
+	list-style: circle;
+}
+
+a {
+	color: #045FB4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#main{
+	position: relative;
+	margin: 0 auto 0 auto;
+	width: 900px;
+	padding-top: 20px;
+}
+
+#header{
+	width: 900px;
+	height: 100px;
+}
+
+#logo{
+	width: 270px;
+	float: left;
+	margin: 0;
+	padding: 10px 10px 10px 20px;
+	height: 80px;
+}
+
+#logo h1{
+	color: #FFFFFF;
+	line-height: 60px;
+	text-shadow: 0 0 0;
+	margin: 0;
+}
+
+#menu{
+	width: 580px;
+	height: 80px;
+	float: left;
+	margin: 0;
+	padding: 10px;
+}
+
+#content{background: #999999;
+	color: #6E6E6E;
+	width: 830px;
+	padding: 20px 20px 20px 50px;
+	background: white;
+	font-family: "Trebuchet MS", sans-serif;
+	border-radius: 10px;
+	-ms-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	overflow: hidden;
+}
+
+#content h1, h2 {
+	color: #0B3861;
+}
+
+#top_menu{
+	height: 60px;
+	position: relative;
+	width: 530px;
+	margin: 0 auto 0 auto;
+	color: white;
+	overflow: hidden;
+	text-transform: uppercase;
+	background: url(../img/menu_background_1.jpg) repeat-x;
+	border-radius: 5px;
+}
+
+#top_menu ul{
+	line-height: 60px;
+	margin: 0;
+	color: white;
+}
+
+#top_menu ul li{
+	display: inline;
+	margin-left: 15px;
+	padding-left: 15px;
+	border-left: 1px dashed;
+	color: white;
+}
+
+ #top_menu ul li:first-child {
+    border-left:none;
+	padding-left: 0;
+ }
+
+
+#top_menu ul li a{
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#top_menu ul li a:hover{
+	text-decoration: underline;
+}
+
+#footer{
+	color: #FFFFFF;
+	width: 880px;
+	padding:10px;
+	text-align: center;
+}
+
+#footer a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#footer a:hover{
+	text-decoration: underline;
+}
+
+#top_menu ul li .current{
+	text-decoration: underline;
+}
+/*
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.button:active {
+	position:relative;
+	top:1px;
+}*/
+
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #c4daf5) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #c4daf5 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#c4daf5');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #b8cce6;
+	display:inline-block;
+	color:#789bc2;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c4daf5), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #c4daf5 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c4daf5', endColorstr='#ededed');
+	background-color:#c4daf5;
+}.button:active {
+	position:relative;
+	top:1px;
+}
