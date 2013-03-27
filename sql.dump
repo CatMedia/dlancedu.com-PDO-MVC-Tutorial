@@ -1,0 +1,281 @@
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (i686)
+--
+-- Host: localhost    Database: mvc
+-- ------------------------------------------------------
+-- Server version  5.5.28-0ubuntu0.12.04.2
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ciudades`
+--
+
+DROP TABLE IF EXISTS `ciudades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ciudades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ciudad` varchar(100) DEFAULT NULL,
+  `pais` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ciudades`
+--
+
+LOCK TABLES `ciudades` WRITE;
+/*!40000 ALTER TABLE `ciudades` DISABLE KEYS */;
+INSERT INTO `ciudades` VALUES (1,'Santo Domingo',1),(2,'Cartagena',2),(3,'Santiago',1),(4,'Alicante',2);
+/*!40000 ALTER TABLE `ciudades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `example`
+--
+
+DROP TABLE IF EXISTS `example`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `example` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `example`
+--
+
+LOCK TABLES `example` WRITE;
+/*!40000 ALTER TABLE `example` DISABLE KEYS */;
+INSERT INTO `example` VALUES (3,'nombre3'),(4,'nombre4'),(5,'nombre5'),(6,'nombre6'),(7,'nombre7'),(8,'nombre8'),(9,'nombre9'),(10,'nombre0');
+/*!40000 ALTER TABLE `example` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `paises`
+--
+
+DROP TABLE IF EXISTS `paises`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `paises` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pais` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paises`
+--
+
+LOCK TABLES `paises` WRITE;
+/*!40000 ALTER TABLE `paises` DISABLE KEYS */;
+INSERT INTO `paises` VALUES (1,'Rep. Dominicana'),(2,'Espana');
+/*!40000 ALTER TABLE `paises` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permisos`
+--
+
+DROP TABLE IF EXISTS `permisos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `permisos` (
+  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
+  `permiso` varchar(100) NOT NULL,
+  `key` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_permiso`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permisos`
+--
+
+LOCK TABLES `permisos` WRITE;
+/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (1,'Tareas de administracion','admin_access'),(2,'Agregar Posts','nuevo_post'),(3,'Editar Posts','editar_post'),(4,'Eliminar Posts','eliminar_post');
+/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permisos_role`
+--
+
+DROP TABLE IF EXISTS `permisos_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `permisos_role` (
+  `role` int(11) NOT NULL,
+  `permiso` int(11) NOT NULL,
+  `valor` tinyint(4) NOT NULL,
+  UNIQUE KEY `role` (`role`,`permiso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permisos_role`
+--
+
+LOCK TABLES `permisos_role` WRITE;
+/*!40000 ALTER TABLE `permisos_role` DISABLE KEYS */;
+INSERT INTO `permisos_role` VALUES (1,1,1),(1,2,1),(1,3,1),(1,4,1),(2,2,1),(2,3,1),(2,4,1),(3,2,1),(3,3,1),(4,2,1);
+/*!40000 ALTER TABLE `permisos_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permisos_usuario`
+--
+
+DROP TABLE IF EXISTS `permisos_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `permisos_usuario` (
+  `usuario` int(11) NOT NULL,
+  `permiso` int(11) NOT NULL,
+  `valor` tinyint(4) DEFAULT NULL,
+  UNIQUE KEY `usuario` (`usuario`,`permiso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permisos_usuario`
+--
+
+LOCK TABLES `permisos_usuario` WRITE;
+/*!40000 ALTER TABLE `permisos_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `permisos_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(100) DEFAULT NULL,
+  `cuerpo` text,
+  `imagen` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=307 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `posts`
+--
+
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (1,'Test 1','test1...',NULL),(2,'Test 2','test',NULL),(3,'Test 3','test','upl_4facbad253343.jpg'),(4,'Test 4','test','upl_4facbaf9a5b99.jpg'),(5,'titulo 0','cuerpo0',''),(6,'titulo 1','cuerpo1',''),(7,'titulo 2','cuerpo2',''),(8,'titulo 3','cuerpo3',''),(9,'titulo 4','cuerpo4',''),(10,'titulo 5','cuerpo5',''),(11,'titulo 6','cuerpo6',''),(12,'titulo 7','cuerpo7',''),(13,'titulo 8','cuerpo8',''),(14,'titulo 9','cuerpo9',''),(15,'titulo 10','cuerpo10',''),(16,'titulo 11','cuerpo11',''),(17,'titulo 12','cuerpo12',''),(18,'titulo 13','cuerpo13',''),(19,'titulo 14','cuerpo14',''),(20,'titulo 15','cuerpo15',''),(21,'titulo 16','cuerpo16',''),(22,'titulo 17','cuerpo17',''),(23,'titulo 18','cuerpo18',''),(24,'titulo 19','cuerpo19',''),(25,'titulo 20','cuerpo20',''),(26,'titulo 21','cuerpo21',''),(27,'titulo 22','cuerpo22',''),(28,'titulo 23','cuerpo23',''),(29,'titulo 24','cuerpo24',''),(30,'titulo 25','cuerpo25',''),(31,'titulo 26','cuerpo26',''),(32,'titulo 27','cuerpo27',''),(33,'titulo 28','cuerpo28',''),(34,'titulo 29','cuerpo29',''),(35,'titulo 30','cuerpo30',''),(36,'titulo 31','cuerpo31',''),(37,'titulo 32','cuerpo32',''),(38,'titulo 33','cuerpo33',''),(39,'titulo 34','cuerpo34',''),(40,'titulo 35','cuerpo35',''),(41,'titulo 36','cuerpo36',''),(42,'titulo 37','cuerpo37',''),(43,'titulo 38','cuerpo38',''),(44,'titulo 39','cuerpo39',''),(45,'titulo 40','cuerpo40',''),(46,'titulo 41','cuerpo41',''),(47,'titulo 42','cuerpo42',''),(48,'titulo 43','cuerpo43',''),(49,'titulo 44','cuerpo44',''),(50,'titulo 45','cuerpo45',''),(51,'titulo 46','cuerpo46',''),(52,'titulo 47','cuerpo47',''),(53,'titulo 48','cuerpo48',''),(54,'titulo 49','cuerpo49',''),(55,'titulo 50','cuerpo50',''),(56,'titulo 51','cuerpo51',''),(57,'titulo 52','cuerpo52',''),(58,'titulo 53','cuerpo53',''),(59,'titulo 54','cuerpo54',''),(60,'titulo 55','cuerpo55',''),(61,'titulo 56','cuerpo56',''),(62,'titulo 57','cuerpo57',''),(63,'titulo 58','cuerpo58',''),(64,'titulo 59','cuerpo59',''),(65,'titulo 60','cuerpo60',''),(66,'titulo 61','cuerpo61',''),(67,'titulo 62','cuerpo62',''),(68,'titulo 63','cuerpo63',''),(69,'titulo 64','cuerpo64',''),(70,'titulo 65','cuerpo65',''),(71,'titulo 66','cuerpo66',''),(72,'titulo 67','cuerpo67',''),(73,'titulo 68','cuerpo68',''),(74,'titulo 69','cuerpo69',''),(75,'titulo 70','cuerpo70',''),(76,'titulo 71','cuerpo71',''),(77,'titulo 72','cuerpo72',''),(78,'titulo 73','cuerpo73',''),(79,'titulo 74','cuerpo74',''),(80,'titulo 75','cuerpo75',''),(81,'titulo 76','cuerpo76',''),(82,'titulo 77','cuerpo77',''),(83,'titulo 78','cuerpo78',''),(84,'titulo 79','cuerpo79',''),(85,'titulo 80','cuerpo80',''),(86,'titulo 81','cuerpo81',''),(87,'titulo 82','cuerpo82',''),(88,'titulo 83','cuerpo83',''),(89,'titulo 84','cuerpo84',''),(90,'titulo 85','cuerpo85',''),(91,'titulo 86','cuerpo86',''),(92,'titulo 87','cuerpo87',''),(93,'titulo 88','cuerpo88',''),(94,'titulo 89','cuerpo89',''),(95,'titulo 90','cuerpo90',''),(96,'titulo 91','cuerpo91',''),(97,'titulo 92','cuerpo92',''),(98,'titulo 93','cuerpo93',''),(99,'titulo 94','cuerpo94',''),(100,'titulo 95','cuerpo95',''),(101,'titulo 96','cuerpo96',''),(102,'titulo 97','cuerpo97',''),(103,'titulo 98','cuerpo98',''),(104,'titulo 99','cuerpo99',''),(105,'titulo 100','cuerpo100',''),(106,'titulo 101','cuerpo101',''),(107,'titulo 102','cuerpo102',''),(108,'titulo 103','cuerpo103',''),(109,'titulo 104','cuerpo104',''),(110,'titulo 105','cuerpo105',''),(111,'titulo 106','cuerpo106',''),(112,'titulo 107','cuerpo107',''),(113,'titulo 108','cuerpo108',''),(114,'titulo 109','cuerpo109',''),(115,'titulo 110','cuerpo110',''),(116,'titulo 111','cuerpo111',''),(117,'titulo 112','cuerpo112',''),(118,'titulo 113','cuerpo113',''),(119,'titulo 114','cuerpo114',''),(120,'titulo 115','cuerpo115',''),(121,'titulo 116','cuerpo116',''),(122,'titulo 117','cuerpo117',''),(123,'titulo 118','cuerpo118',''),(124,'titulo 119','cuerpo119',''),(125,'titulo 120','cuerpo120',''),(126,'titulo 121','cuerpo121',''),(127,'titulo 122','cuerpo122',''),(128,'titulo 123','cuerpo123',''),(129,'titulo 124','cuerpo124',''),(130,'titulo 125','cuerpo125',''),(131,'titulo 126','cuerpo126',''),(132,'titulo 127','cuerpo127',''),(133,'titulo 128','cuerpo128',''),(134,'titulo 129','cuerpo129',''),(135,'titulo 130','cuerpo130',''),(136,'titulo 131','cuerpo131',''),(137,'titulo 132','cuerpo132',''),(138,'titulo 133','cuerpo133',''),(139,'titulo 134','cuerpo134',''),(140,'titulo 135','cuerpo135',''),(141,'titulo 136','cuerpo136',''),(142,'titulo 137','cuerpo137',''),(143,'titulo 138','cuerpo138',''),(144,'titulo 139','cuerpo139',''),(145,'titulo 140','cuerpo140',''),(146,'titulo 141','cuerpo141',''),(147,'titulo 142','cuerpo142',''),(148,'titulo 143','cuerpo143',''),(149,'titulo 144','cuerpo144',''),(150,'titulo 145','cuerpo145',''),(151,'titulo 146','cuerpo146',''),(152,'titulo 147','cuerpo147',''),(153,'titulo 148','cuerpo148',''),(154,'titulo 149','cuerpo149',''),(155,'titulo 150','cuerpo150',''),(156,'titulo 151','cuerpo151',''),(157,'titulo 152','cuerpo152',''),(158,'titulo 153','cuerpo153',''),(159,'titulo 154','cuerpo154',''),(160,'titulo 155','cuerpo155',''),(161,'titulo 156','cuerpo156',''),(162,'titulo 157','cuerpo157',''),(163,'titulo 158','cuerpo158',''),(164,'titulo 159','cuerpo159',''),(165,'titulo 160','cuerpo160',''),(166,'titulo 161','cuerpo161',''),(167,'titulo 162','cuerpo162',''),(168,'titulo 163','cuerpo163',''),(169,'titulo 164','cuerpo164',''),(170,'titulo 165','cuerpo165',''),(171,'titulo 166','cuerpo166',''),(172,'titulo 167','cuerpo167',''),(173,'titulo 168','cuerpo168',''),(174,'titulo 169','cuerpo169',''),(175,'titulo 170','cuerpo170',''),(176,'titulo 171','cuerpo171',''),(177,'titulo 172','cuerpo172',''),(178,'titulo 173','cuerpo173',''),(179,'titulo 174','cuerpo174',''),(180,'titulo 175','cuerpo175',''),(181,'titulo 176','cuerpo176',''),(182,'titulo 177','cuerpo177',''),(183,'titulo 178','cuerpo178',''),(184,'titulo 179','cuerpo179',''),(185,'titulo 180','cuerpo180',''),(186,'titulo 181','cuerpo181',''),(187,'titulo 182','cuerpo182',''),(188,'titulo 183','cuerpo183',''),(189,'titulo 184','cuerpo184',''),(190,'titulo 185','cuerpo185',''),(191,'titulo 186','cuerpo186',''),(192,'titulo 187','cuerpo187',''),(193,'titulo 188','cuerpo188',''),(194,'titulo 189','cuerpo189',''),(195,'titulo 190','cuerpo190',''),(196,'titulo 191','cuerpo191',''),(197,'titulo 192','cuerpo192',''),(198,'titulo 193','cuerpo193',''),(199,'titulo 194','cuerpo194',''),(200,'titulo 195','cuerpo195',''),(201,'titulo 196','cuerpo196',''),(202,'titulo 197','cuerpo197',''),(203,'titulo 198','cuerpo198',''),(204,'titulo 199','cuerpo199',''),(205,'titulo 200','cuerpo200',''),(206,'titulo 201','cuerpo201',''),(207,'titulo 202','cuerpo202',''),(208,'titulo 203','cuerpo203',''),(209,'titulo 204','cuerpo204',''),(210,'titulo 205','cuerpo205',''),(211,'titulo 206','cuerpo206',''),(212,'titulo 207','cuerpo207',''),(213,'titulo 208','cuerpo208',''),(214,'titulo 209','cuerpo209',''),(215,'titulo 210','cuerpo210',''),(216,'titulo 211','cuerpo211',''),(217,'titulo 212','cuerpo212',''),(218,'titulo 213','cuerpo213',''),(219,'titulo 214','cuerpo214',''),(220,'titulo 215','cuerpo215',''),(221,'titulo 216','cuerpo216',''),(222,'titulo 217','cuerpo217',''),(223,'titulo 218','cuerpo218',''),(224,'titulo 219','cuerpo219',''),(225,'titulo 220','cuerpo220',''),(226,'titulo 221','cuerpo221',''),(227,'titulo 222','cuerpo222',''),(228,'titulo 223','cuerpo223',''),(229,'titulo 224','cuerpo224',''),(230,'titulo 225','cuerpo225',''),(231,'titulo 226','cuerpo226',''),(232,'titulo 227','cuerpo227',''),(233,'titulo 228','cuerpo228',''),(234,'titulo 229','cuerpo229',''),(235,'titulo 230','cuerpo230',''),(236,'titulo 231','cuerpo231',''),(237,'titulo 232','cuerpo232',''),(238,'titulo 233','cuerpo233',''),(239,'titulo 234','cuerpo234',''),(240,'titulo 235','cuerpo235',''),(241,'titulo 236','cuerpo236',''),(242,'titulo 237','cuerpo237',''),(243,'titulo 238','cuerpo238',''),(244,'titulo 239','cuerpo239',''),(245,'titulo 240','cuerpo240',''),(246,'titulo 241','cuerpo241',''),(247,'titulo 242','cuerpo242',''),(248,'titulo 243','cuerpo243',''),(249,'titulo 244','cuerpo244',''),(250,'titulo 245','cuerpo245',''),(251,'titulo 246','cuerpo246',''),(252,'titulo 247','cuerpo247',''),(253,'titulo 248','cuerpo248',''),(254,'titulo 249','cuerpo249',''),(255,'titulo 250','cuerpo250',''),(256,'titulo 251','cuerpo251',''),(257,'titulo 252','cuerpo252',''),(258,'titulo 253','cuerpo253',''),(259,'titulo 254','cuerpo254',''),(260,'titulo 255','cuerpo255',''),(261,'titulo 256','cuerpo256',''),(262,'titulo 257','cuerpo257',''),(263,'titulo 258','cuerpo258',''),(264,'titulo 259','cuerpo259',''),(265,'titulo 260','cuerpo260',''),(266,'titulo 261','cuerpo261',''),(267,'titulo 262','cuerpo262',''),(268,'titulo 263','cuerpo263',''),(269,'titulo 264','cuerpo264',''),(270,'titulo 265','cuerpo265',''),(271,'titulo 266','cuerpo266',''),(272,'titulo 267','cuerpo267',''),(273,'titulo 268','cuerpo268',''),(274,'titulo 269','cuerpo269',''),(275,'titulo 270','cuerpo270',''),(276,'titulo 271','cuerpo271',''),(277,'titulo 272','cuerpo272',''),(278,'titulo 273','cuerpo273',''),(279,'titulo 274','cuerpo274',''),(280,'titulo 275','cuerpo275',''),(281,'titulo 276','cuerpo276',''),(282,'titulo 277','cuerpo277',''),(283,'titulo 278','cuerpo278',''),(284,'titulo 279','cuerpo279',''),(285,'titulo 280','cuerpo280',''),(286,'titulo 281','cuerpo281',''),(287,'titulo 282','cuerpo282',''),(288,'titulo 283','cuerpo283',''),(289,'titulo 284','cuerpo284',''),(290,'titulo 285','cuerpo285',''),(291,'titulo 286','cuerpo286',''),(292,'titulo 287','cuerpo287',''),(293,'titulo 288','cuerpo288',''),(294,'titulo 289','cuerpo289',''),(295,'titulo 290','cuerpo290',''),(296,'titulo 291','cuerpo291',''),(297,'titulo 292','cuerpo292',''),(298,'titulo 293','cuerpo293',''),(299,'titulo 294','cuerpo294',''),(300,'titulo 295','cuerpo295',''),(301,'titulo 296','cuerpo296',''),(302,'titulo 297','cuerpo297',''),(303,'titulo 298','cuerpo298',''),(304,'titulo 299','cuerpo299',''),(305,'asdsad','dsasdsad',''),(306,'testing...','testing...','');
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prueba`
+--
+
+DROP TABLE IF EXISTS `prueba`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prueba` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  `id_pais` int(11) DEFAULT NULL,
+  `id_ciudad` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prueba`
+--
+
+LOCK TABLES `prueba` WRITE;
+/*!40000 ALTER TABLE `prueba` DISABLE KEYS */;
+INSERT INTO `prueba` VALUES (1,'nombre 0',1,1),(2,'nombre 1',1,1),(3,'nombre 2',1,1),(4,'nombre 3',1,1),(5,'nombre 4',1,1),(6,'nombre 5',1,1),(7,'nombre 6',1,1),(8,'nombre 7',1,1),(9,'nombre 8',1,1),(10,'nombre 9',1,1),(11,'nombre 10',1,1),(12,'nombre 11',1,1),(13,'nombre 12',1,1),(14,'nombre 13',1,1),(15,'nombre 14',1,1),(16,'nombre 15',1,1),(17,'nombre 16',1,1),(18,'nombre 17',1,1),(19,'nombre 18',1,1),(20,'nombre 19',1,1),(21,'nombre 20',1,1),(22,'nombre 21',1,1),(23,'nombre 22',1,1),(24,'nombre 23',1,1),(25,'nombre 24',1,1),(26,'nombre 25',1,1),(27,'nombre 26',1,1),(28,'nombre 27',1,1),(29,'nombre 28',1,1),(30,'nombre 29',1,1),(31,'nombre 30',1,1),(32,'nombre 31',1,1),(33,'nombre 32',1,1),(34,'nombre 33',1,1),(35,'nombre 34',1,1),(36,'nombre 35',1,1),(37,'nombre 36',1,1),(38,'nombre 37',1,1),(39,'nombre 38',1,1),(40,'nombre 39',1,1),(41,'nombre 40',1,1),(42,'nombre 41',1,1),(43,'nombre 42',1,1),(44,'nombre 43',1,1),(45,'nombre 44',1,1),(46,'nombre 45',1,1),(47,'nombre 46',1,1),(48,'nombre 47',1,1),(49,'nombre 48',1,1),(50,'nombre 49',1,1),(51,'nombre 50',1,1),(52,'nombre 51',1,1),(53,'nombre 52',1,1),(54,'nombre 53',1,1),(55,'nombre 54',1,1),(56,'nombre 55',1,1),(57,'nombre 56',1,1),(58,'nombre 57',1,1),(59,'nombre 58',1,1),(60,'nombre 59',1,1),(61,'nombre 60',1,1),(62,'nombre 61',1,1),(63,'nombre 62',1,1),(64,'nombre 63',1,1),(65,'nombre 64',1,1),(66,'nombre 65',1,1),(67,'nombre 66',1,1),(68,'nombre 67',1,1),(69,'nombre 68',1,1),(70,'nombre 69',1,1),(71,'nombre 70',1,1),(72,'nombre 71',1,1),(73,'nombre 72',1,1),(74,'nombre 73',1,1),(75,'nombre 74',1,1),(76,'nombre 75',1,3),(77,'nombre 76',1,3),(78,'nombre 77',1,3),(79,'nombre 78',1,3),(80,'nombre 79',1,3),(81,'nombre 80',1,3),(82,'nombre 81',1,3),(83,'nombre 82',1,3),(84,'nombre 83',1,3),(85,'nombre 84',1,3),(86,'nombre 85',1,3),(87,'nombre 86',1,3),(88,'nombre 87',1,3),(89,'nombre 88',1,3),(90,'nombre 89',1,3),(91,'nombre 90',1,3),(92,'nombre 91',1,3),(93,'nombre 92',1,3),(94,'nombre 93',1,3),(95,'nombre 94',1,3),(96,'nombre 95',1,3),(97,'nombre 96',1,3),(98,'nombre 97',1,3),(99,'nombre 98',1,3),(100,'nombre 99',1,3),(101,'nombre 100',1,3),(102,'nombre 101',1,3),(103,'nombre 102',1,3),(104,'nombre 103',1,3),(105,'nombre 104',1,3),(106,'nombre 105',1,3),(107,'nombre 106',1,3),(108,'nombre 107',1,3),(109,'nombre 108',1,3),(110,'nombre 109',1,3),(111,'nombre 110',1,3),(112,'nombre 111',1,3),(113,'nombre 112',1,3),(114,'nombre 113',1,3),(115,'nombre 114',1,3),(116,'nombre 115',1,3),(117,'nombre 116',1,3),(118,'nombre 117',1,3),(119,'nombre 118',1,3),(120,'nombre 119',1,3),(121,'nombre 120',1,3),(122,'nombre 121',1,3),(123,'nombre 122',1,3),(124,'nombre 123',1,3),(125,'nombre 124',1,3),(126,'nombre 125',1,3),(127,'nombre 126',1,3),(128,'nombre 127',1,3),(129,'nombre 128',1,3),(130,'nombre 129',1,3),(131,'nombre 130',1,3),(132,'nombre 131',1,3),(133,'nombre 132',1,3),(134,'nombre 133',1,3),(135,'nombre 134',1,3),(136,'nombre 135',1,3),(137,'nombre 136',1,3),(138,'nombre 137',1,3),(139,'nombre 138',1,3),(140,'nombre 139',1,3),(141,'nombre 140',1,3),(142,'nombre 141',1,3),(143,'nombre 142',1,3),(144,'nombre 143',1,3),(145,'nombre 144',1,3),(146,'nombre 145',1,3),(147,'nombre 146',1,3),(148,'nombre 147',1,3),(149,'nombre 148',1,3),(150,'nombre 149',1,3),(151,'nombre 150',2,2),(152,'nombre 151',2,2),(153,'nombre 152',2,2),(154,'nombre 153',2,2),(155,'nombre 154',2,2),(156,'nombre 155',2,2),(157,'nombre 156',2,2),(158,'nombre 157',2,2),(159,'nombre 158',2,2),(160,'nombre 159',2,2),(161,'nombre 160',2,2),(162,'nombre 161',2,2),(163,'nombre 162',2,2),(164,'nombre 163',2,2),(165,'nombre 164',2,2),(166,'nombre 165',2,2),(167,'nombre 166',2,2),(168,'nombre 167',2,2),(169,'nombre 168',2,2),(170,'nombre 169',2,2),(171,'nombre 170',2,2),(172,'nombre 171',2,2),(173,'nombre 172',2,2),(174,'nombre 173',2,2),(175,'nombre 174',2,2),(176,'nombre 175',2,2),(177,'nombre 176',2,2),(178,'nombre 177',2,2),(179,'nombre 178',2,2),(180,'nombre 179',2,2),(181,'nombre 180',2,2),(182,'nombre 181',2,2),(183,'nombre 182',2,2),(184,'nombre 183',2,2),(185,'nombre 184',2,2),(186,'nombre 185',2,2),(187,'nombre 186',2,2),(188,'nombre 187',2,2),(189,'nombre 188',2,2),(190,'nombre 189',2,2),(191,'nombre 190',2,2),(192,'nombre 191',2,2),(193,'nombre 192',2,2),(194,'nombre 193',2,2),(195,'nombre 194',2,2),(196,'nombre 195',2,2),(197,'nombre 196',2,2),(198,'nombre 197',2,2),(199,'nombre 198',2,2),(200,'nombre 199',2,2),(201,'nombre 200',2,2),(202,'nombre 201',2,2),(203,'nombre 202',2,2),(204,'nombre 203',2,2),(205,'nombre 204',2,2),(206,'nombre 205',2,2),(207,'nombre 206',2,2),(208,'nombre 207',2,2),(209,'nombre 208',2,2),(210,'nombre 209',2,2),(211,'nombre 210',2,2),(212,'nombre 211',2,2),(213,'nombre 212',2,2),(214,'nombre 213',2,2),(215,'nombre 214',2,2),(216,'nombre 215',2,2),(217,'nombre 216',2,2),(218,'nombre 217',2,2),(219,'nombre 218',2,2),(220,'nombre 219',2,2),(221,'nombre 220',2,2),(222,'nombre 221',2,2),(223,'nombre 222',2,2),(224,'nombre 223',2,2),(225,'nombre 224',2,2),(226,'nombre 225',2,4),(227,'nombre 226',2,4),(228,'nombre 227',2,4),(229,'nombre 228',2,4),(230,'nombre 229',2,4),(231,'nombre 230',2,4),(232,'nombre 231',2,4),(233,'nombre 232',2,4),(234,'nombre 233',2,4),(235,'nombre 234',2,4),(236,'nombre 235',2,4),(237,'nombre 236',2,4),(238,'nombre 237',2,4),(239,'nombre 238',2,4),(240,'nombre 239',2,4),(241,'nombre 240',2,4),(242,'nombre 241',2,4),(243,'nombre 242',2,4),(244,'nombre 243',2,4),(245,'nombre 244',2,4),(246,'nombre 245',2,4),(247,'nombre 246',2,4),(248,'nombre 247',2,4),(249,'nombre 248',2,4),(250,'nombre 249',2,4),(251,'nombre 250',2,4),(252,'nombre 251',2,4),(253,'nombre 252',2,4),(254,'nombre 253',2,4),(255,'nombre 254',2,4),(256,'nombre 255',2,4),(257,'nombre 256',2,4),(258,'nombre 257',2,4),(259,'nombre 258',2,4),(260,'nombre 259',2,4),(261,'nombre 260',2,4),(262,'nombre 261',2,4),(263,'nombre 262',2,4),(264,'nombre 263',2,4),(265,'nombre 264',2,4),(266,'nombre 265',2,4),(267,'nombre 266',2,4),(268,'nombre 267',2,4),(269,'nombre 268',2,4),(270,'nombre 269',2,4),(271,'nombre 270',2,4),(272,'nombre 271',2,4),(273,'nombre 272',2,4),(274,'nombre 273',2,4),(275,'nombre 274',2,4),(276,'nombre 275',2,4),(277,'nombre 276',2,4),(278,'nombre 277',2,4),(279,'nombre 278',2,4),(280,'nombre 279',2,4),(281,'nombre 280',2,4),(282,'nombre 281',2,4),(283,'nombre 282',2,4),(284,'nombre 283',2,4),(285,'nombre 284',2,4),(286,'nombre 285',2,4),(287,'nombre 286',2,4),(288,'nombre 287',2,4),(289,'nombre 288',2,4),(290,'nombre 289',2,4),(291,'nombre 290',2,4),(292,'nombre 291',2,4),(293,'nombre 292',2,4),(294,'nombre 293',2,4),(295,'nombre 294',2,4),(296,'nombre 295',2,4),(297,'nombre 296',2,4),(298,'nombre 297',2,4),(299,'nombre 298',2,4),(300,'nombre 299',2,4);
+/*!40000 ALTER TABLE `prueba` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador'),(2,'Gestor'),(3,'Editor'),(4,'Registrado');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
+  `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `usuario` varchar(30) NOT NULL,
+  `pass` varchar(40) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `role` int(11) NOT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `fecha` datetime NOT NULL,
+  `codigo` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'nombre1','admin','d1b254c9620425f582e27f0044be34bee087d8b4','admin@admin.adm',1,1,'0000-00-00 00:00:00',1963007335),(2,'usuario1','usuario1','d1b254c9620425f582e27f0044be34bee087d8b4','usuario1@user.com',2,1,'2012-03-21 20:53:07',1963007335),(3,'usuario2','usuario2','d1b254c9620425f582e27f0044be34bee087d8b4','usuario2@user.com',3,1,'2012-03-21 20:57:01',1963007335);
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2012-11-09 23:38:20
